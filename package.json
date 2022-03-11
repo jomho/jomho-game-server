@@ -1,0 +1,29 @@
+{
+  "name": "jomho-game-services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jomho",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-useragent": "^1.0.15",
+    "express-validator": "^6.12.2",
+    "geoip-lite": "^1.4.2",
+    "helmet": "^4.6.0",
+    "mongoose": "^6.0.10",
+    "random-username-generator": "^1.0.4",
+    "request": "^2.88.2",
+    "twilio": "^3.69.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
