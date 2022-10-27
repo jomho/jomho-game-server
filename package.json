@@ -1,5 +1,5 @@
 {
-  "name": "jomho-game-services",
+  "name": "jomho-game-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -20,6 +20,7 @@
     "mongoose": "^6.0.10",
     "random-username-generator": "^1.0.4",
     "request": "^2.88.2",
+    "swagger-ui-express": "^4.5.0",
     "twilio": "^3.69.0",
     "winston": "^3.3.3"
   },

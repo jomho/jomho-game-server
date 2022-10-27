@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Leaderboard = mongoose.model('Leaderboard');
 const User = mongoose.model('User');
 
-module.exports = async (app) => {
-    app.get("/leaderboards", async (req, res) => {
+module.exports = async (app, version) => {
+    app.get(`/${version}/leaderboards`, async (req, res) => {
         const leaderboards = await Leaderboard.find({})
             .populate("user", {username: 1})
             .exec();
@@ -14,7 +14,7 @@ module.exports = async (app) => {
         return res.json(sorted);
     });
 
-    app.get("/leaderboards/:leaderboard", async (req, res) => {
+    app.get(`/${version}/leaderboards/:leaderboard`, async (req, res) => {
         const leaderboard = req.params.leaderboard;
 
         const leaderboards = await Leaderboard.find({leaderboard})
@@ -26,7 +26,7 @@ module.exports = async (app) => {
         return res.json({leaderboard: sorted});
     });
 
-    app.post("/leaderboards/:leaderboard", async (req, res) => {
+    app.post(`/${version}/leaderboards/:leaderboard`, async (req, res) => {
         const leaderboardName = req.params.leaderboard;
         const user = req.body.user;
         const points = req.body.points;

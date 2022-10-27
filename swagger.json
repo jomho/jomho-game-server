@@ -1,0 +1,315 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Jomho Game Server API",
+    "version": "1.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1.0/users": {
+      "get": {
+        "operationId": "GetAllUsers-v1.0",
+        "summary": "Get all users",
+        "description": "Get an array of all users.\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "[\n    {\n        \"_id\": \"6359d5a04784efff0737200b\",\n        \"username\": \"witty-harry-67\",\n        \"changedName\": false,\n        \"registered\": false,\n        \"password\": \"$2a$10$oCYK0cqHFy3dzTq6PXHnX.2ABdVvHKy9lF4OKHR6C8Hg0IJZPh9p2\",\n        \"useragent\": {\n            \"isYaBrowser\": false,\n            \"isAuthoritative\": false,\n            \"isMobile\": false,\n            \"isMobileNative\": false,\n            \"isTablet\": false,\n            \"isiPad\": false,\n            \"isiPod\": false,\n            \"isiPhone\": false,\n            \"isiPhoneNative\": false,\n            \"isAndroid\": false,\n            \"isAndroidNative\": false,\n            \"isBlackberry\": false,\n            \"isOpera\": false,\n            \"isIE\": false,\n            \"isEdge\": false,\n            \"isIECompatibilityMode\": false,\n            \"isSafari\": false,\n            \"isFirefox\": false,\n            \"isWebkit\": false,\n            \"isChrome\": false,\n            \"isKonqueror\": false,\n            \"isOmniWeb\": false,\n            \"isSeaMonkey\": false,\n            \"isFlock\": false,\n            \"isAmaya\": false,\n            \"isPhantomJS\": false,\n            \"isEpiphany\": false,\n            \"isDesktop\": false,\n            \"isWindows\": false,\n            \"isLinux\": false,\n            \"isLinux64\": false,\n            \"isMac\": false,\n            \"isChromeOS\": false,\n            \"isBada\": false,\n            \"isSamsung\": false,\n            \"isRaspberry\": false,\n            \"isBot\": \"postman\",\n            \"isCurl\": false,\n            \"isAndroidTablet\": false,\n            \"isWinJs\": false,\n            \"isKindleFire\": false,\n            \"isSilk\": false,\n            \"isCaptive\": false,\n            \"isSmartTV\": false,\n            \"isUC\": false,\n            \"isFacebook\": false,\n            \"isAlamoFire\": false,\n            \"isElectron\": false,\n            \"silkAccelerated\": false,\n            \"browser\": \"PostmanRuntime\",\n            \"version\": \"7.29.2\",\n            \"os\": \"unknown\",\n            \"platform\": \"unknown\",\n            \"source\": \"PostmanRuntime/7.29.2\",\n            \"isWechat\": false\n        },\n        \"location\": null,\n        \"createdAt\": \"2022-10-27T00:49:36.796Z\",\n        \"updatedAt\": \"2022-10-27T00:49:36.796Z\",\n        \"__v\": 0\n    }\n]"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "CreateUsers-v1.0",
+        "summary": "Create User",
+        "description": "Create a new user with random username and password. This functionality allow anonymous account creation without user input. Store this informational locally on the client devices for interacting with the api. \n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "{\n    \"id\": \"6359d5a04784efff0737200b\",\n    \"username\": \"witty-harry-67\",\n    \"password\": \"ea1ba7ae6ca1e285c4559\"\n}"
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/users/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "in": "path",
+          "type": "string",
+          "description": "The user's id."
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Update user object. Requires password returned on create user and a new username.",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/UpdateUser"
+          }
+        }
+      ],
+      "get": {
+        "operationId": "GetUser-v1.0",
+        "summary": "Get user details",
+        "description": "Gets detailed information for a specified users.\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "{\n    \"username\": \"witty-harry-67\"\n}"
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"User not found.\"\n}"
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/users/{id}/username": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "in": "path",
+          "type": "string",
+          "description": "The user's id."
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Update user's username. Requires password returned on create user and a new username.",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/UpdateUserUsername"
+          }
+        }
+      ],
+      "put": {
+        "operationId": "UpdateUsersUsername-v1.0",
+        "summary": "Update user's username",
+        "description": "Update user's username to something custom from client.\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"Username changed.\"\n}"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"The password is invalid.\"\n}"
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"User not found.\"\n}"
+            }
+          },
+          "422": {
+            "description": "422 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"Username already changed.\"\n}"
+            }
+          },
+          "409": {
+            "description": "409 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"Username already exists.\"\n}"
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/users/{id}/password": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "in": "path",
+          "type": "string",
+          "description": "The user's id."
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Update user's password. Requires password returned on create user and a new password.",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/UpdateUserRegister"
+          }
+        }
+      ],
+      "put": {
+        "operationId": "UpdateUsersPassword-v1.0",
+        "summary": "Update user's password",
+        "description": "Update user's password to something custom from client.\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"Password changed.\"\n}"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"The new password is invalid.\"\n}"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"The password is invalid.\"\n}"
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/users/{id}/register": {
+      "parameters": [
+        {
+          "name": "id",
+          "required": true,
+          "in": "path",
+          "type": "string",
+          "description": "The user's id."
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "description": "Register an existing user.",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/RegisterExistingUser"
+          }
+        }
+      ],
+      "put": {
+        "operationId": "UpdateUsersRegister-v1.0",
+        "summary": "Register a user",
+        "description": "Register a used after it was been created with POST users/.\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"User registered.\"\n}"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"The password is invalid.\"\n}"
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"User not found.\"\n}"
+            }
+          },
+          "422": {
+            "description": "422 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"Username already changed.\"\n}"
+            }
+          },
+          "409": {
+            "description": "409 response",
+            "examples": {
+              "application/json": "{\n    \"message\": \"Username already exists.\"\n}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UpdateUserUsername": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "coolguy-123"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateUserPassword": {
+      "required": [
+        "password",
+        "newPassword"
+      ],
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string",
+          "example": "sweetpassword"
+        }
+      }
+    },
+    "RegisterExistingUser": {
+      "required": [
+        "username",
+        "email",
+        "password",
+        "newPassword"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "cool-dude-1000"
+        },
+        "email": {
+          "type": "string",
+          "example": "joe@email.com"
+        },
+        "password": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
