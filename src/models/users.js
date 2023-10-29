@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const encrypt = require("../utils/encrypt");
 
 const {Schema} = mongoose;
 
@@ -38,5 +39,29 @@ const UserSchema = new Schema(
     },
     {timestamps: true},
 );
+
+UserSchema.statics.getById = async function (userId) {
+    return await this.findById(userId).exec();
+};
+
+UserSchema.statics.getByUsername = async function (username) {
+    return await this.findOne({username}).exec()
+};
+
+UserSchema.statics.getAll = async function () {
+    return await this.find({}).exec();
+};
+
+UserSchema.statics.isUsernameUnique = async function (username) {
+    return !!await this.findOne({username}).exec();
+};
+
+UserSchema.statics.isEmailUnique = async function (email) {
+    return !!await User.findOne({email}).exec();
+};
+
+UserSchema.statics.validatePassword = async function (hashedPassword, actualPassword) {
+    encrypt.validatePassword(hashedPassword, actualPassword)
+};
 
 module.exports = mongoose.model('User', UserSchema);

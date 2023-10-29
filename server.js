@@ -1,4 +1,4 @@
-const config = require('./config/config');
+const config = require('./src/config/config');
 const mongoose = require('mongoose');
 const express = require('express');
 const useragent = require('express-useragent');
@@ -15,11 +15,11 @@ server.use(express.json());
 server.use(express.urlencoded({extended: true}));
 server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-require('./models/users');
-require('./models/leaderboard');
-require('./models/sessions');
-require('./routes/users')(server, apiVersion);
-require('./routes/leaderboards')(server, apiVersion);
+require('./src/models/users');
+require('./src/models/leaderboard');
+require('./src/models/sessions');
+require('./src/routes/user')(server, apiVersion);
+require('./src/routes/leaderboard')(server, apiVersion);
 
 server.get('/', (req, res) => {
     res.send('Running Jomho Game Server')
